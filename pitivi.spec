@@ -1,13 +1,12 @@
 Summary:	Video editor
 Summary(pl.UTF-8):	Edytor wideo
 Name:		pitivi
-Version:	0.13.1
+Version:	0.13.3
 Release:	1
 License:	LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pitivi/0.13/%{name}-%{version}.tar.bz2
-# Source0-md5:	a925ac7404f0235d22ec09479696ccd6
-Patch0:		%{name}-desktop.patch
+# Source0-md5:	ef9385f74173ddeb5bb10389c46d442a
 URL:		http://www.pitivi.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
@@ -24,7 +23,7 @@ Requires:	gstreamer-gnonlin >= 0.10.11
 Requires:	gstreamer-plugins-good
 Requires:	gstreamer-videosink >= 0.10.23
 Requires:	hicolor-icon-theme
-Requires:	python-gstreamer >= 0.10.15
+Requires:	python-gstreamer >= 0.10.16
 Requires:	python-pycairo
 Requires:	python-pygoocanvas
 Requires:	python-pygtk-glade >= 2:2.12.0
@@ -40,7 +39,6 @@ PiTiVi jest programem do edycji wideo używającym GStreamera.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__intltoolize}
@@ -80,4 +78,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/pitivi.desktop
 %{_iconsdir}/hicolor/*/*/*.png
 %{_iconsdir}/hicolor/*/*/*.svg
-%{_pixmapsdir}/pitivi.png
