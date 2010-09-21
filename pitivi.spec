@@ -2,7 +2,7 @@ Summary:	Video editor
 Summary(pl.UTF-8):	Edytor wideo
 Name:		pitivi
 Version:	0.13.3
-Release:	2
+Release:	3
 License:	LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pitivi/0.13/%{name}-%{version}.tar.bz2
