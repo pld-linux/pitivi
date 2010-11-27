@@ -30,6 +30,7 @@ Requires:	python-pygtk-glade >= 2:2.12.0
 Requires:	python-pygtk-gtk >= 2:2.12.0
 Requires:	python-setuptools
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRoot:	rpm-pythonprov
 
 %description
 PiTiVi is a program for video editing based on the GStreamer.
