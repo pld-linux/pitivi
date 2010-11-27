@@ -19,7 +19,7 @@ Requires(post,postun):	gtk+2
 Requires(post,postun):	shared-mime-info
 Requires:	Zope-Interface
 Requires:	gstreamer-audiosink >= 0.10.23
-Requires:	gstreamer-gnonlin >= 0.10.13
+Requires:	gstreamer-gnonlin >= 0.10.16
 Requires:	gstreamer-plugins-good
 Requires:	gstreamer-videosink >= 0.10.23
 Requires:	hicolor-icon-theme
