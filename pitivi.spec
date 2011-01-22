@@ -13,6 +13,8 @@ BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	python >= 1:2.5
+BuildRequires:	python-modules
+BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.311
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk+2
@@ -30,7 +32,6 @@ Requires:	python-pygtk-glade >= 2:2.12.0
 Requires:	python-pygtk-gtk >= 2:2.12.0
 Requires:	python-setuptools
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-BuildRoot:	rpm-pythonprov
 
 %description
 PiTiVi is a program for video editing based on the GStreamer.
