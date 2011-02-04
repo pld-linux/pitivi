@@ -2,7 +2,7 @@ Summary:	Video editor
 Summary(pl.UTF-8):	Edytor wideo
 Name:		pitivi
 Version:	0.13.5
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pitivi/0.13/%{name}-%{version}.tar.bz2
@@ -17,7 +17,7 @@ BuildRequires:	python-modules
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.311
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	gtk+2
+Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	shared-mime-info
 Requires:	Zope-Interface
 Requires:	gstreamer-audiosink >= 0.10.23
