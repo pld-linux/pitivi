@@ -76,9 +76,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README RELEASE
 %attr(755,root,root) %{_bindir}/pitivi
-%{_libdir}/pitivi
-%{_datadir}/mime/packages/pitivi.xml
-%{_datadir}/pitivi
-%{_desktopdir}/pitivi.desktop
+%{_libdir}/%{name}
+%{_datadir}/%{name}
+%{_datadir}/mime/packages/%{name}.xml
+%{_desktopdir}/%{name}.desktop
 %{_iconsdir}/hicolor/*/*/*.png
 %{_iconsdir}/hicolor/*/*/*.svg
+%{_mandir}/man1/%{name}.1*
