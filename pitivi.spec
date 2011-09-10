@@ -1,12 +1,12 @@
 Summary:	Non-linear video editor
 Summary(pl.UTF-8):	Edytor wideo
 Name:		pitivi
-Version:	0.14.0
+Version:	0.14.2
 Release:	1
 License:	LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pitivi/0.14/%{name}-%{version}.tar.bz2
-# Source0-md5:	6eb98be52c4aad0c1c7e23cfb35f496a
+# Source0-md5:	a99f9415f5a1be60c1961055cd1ae160
 URL:		http://www.pitivi.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
@@ -28,8 +28,8 @@ Requires:	hicolor-icon-theme
 Requires:	python-gstreamer >= 0.10.19
 Requires:	python-pycairo
 Requires:	python-pygoocanvas
-Requires:	python-pygtk-glade >= 2:2.18.0
-Requires:	python-pygtk-gtk >= 2:2.18.0
+Requires:	python-pygtk-glade >= 2:2.24.0
+Requires:	python-pygtk-gtk >= 2:2.24.0
 Requires:	python-pyxdg
 Requires:	python-setuptools
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
