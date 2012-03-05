@@ -1,12 +1,12 @@
 Summary:	Non-linear video editor
 Summary(pl.UTF-8):	Edytor wideo
 Name:		pitivi
-Version:	0.15.0
+Version:	0.15.1
 Release:	1
 License:	LGPL v2+
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pitivi/0.15/%{name}-%{version}.tar.bz2
-# Source0-md5:	c0b9d88ee4c2fd17c62b8dc9f4aeaf52
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pitivi/0.15/%{name}-%{version}.tar.xz
+# Source0-md5:	574fae053fa53a7854418aec56139145
 URL:		http://www.pitivi.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
@@ -20,10 +20,10 @@ Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	shared-mime-info
 Requires:	Zope-Interface
-Requires:	gstreamer-audiosink >= 0.10.28
+Requires:	gstreamer-audiosink >= 0.10.29
 Requires:	gstreamer-gnonlin >= 0.10.16
 Requires:	gstreamer-plugins-good
-Requires:	gstreamer-videosink >= 0.10.28
+Requires:	gstreamer-videosink >= 0.10.29
 Requires:	hicolor-icon-theme
 Requires:	python-gstreamer >= 0.10.19
 Requires:	python-pycairo
@@ -57,7 +57,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%find_lang %{name}
+%find_lang %{name} --with-gnome
 
 %clean
 rm -rf $RPM_BUILD_ROOT
