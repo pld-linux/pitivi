@@ -1,0 +1,29 @@
+diff -rup pitivi/effects.py pitivi/effects.py
+--- pitivi/effects.py	2011-09-24 11:16:29.000000000 -0400
++++ pitivi/effects.py	2011-11-18 11:09:21.475474154 -0500
+@@ -187,9 +187,13 @@ class EffectsHandler(object):
+ 
+             if padTmp.direction == gst.PAD_SRC:
+                 stream = get_stream_for_pad(pad)
++                if stream is None:
++                    continue
+                 factory.addInputStream(stream)
+             elif padTmp.direction == gst.PAD_SINK:
+                 stream = get_stream_for_pad(pad)
++                if stream is None:
++                    continue
+                 factory.addOutputStream(stream)
+         return True
+ 
+diff -rup pitivi/stream.py pitivi/stream.py
+--- pitivi/stream.py	2011-09-24 11:16:29.000000000 -0400
++++ pitivi/stream.py	2011-11-18 11:09:43.524670882 -0500
+@@ -370,6 +370,8 @@ def get_stream_for_pad(pad, store_pad=Fa
+         caps = pad.get_caps()
+     pad_id = get_pad_id(pad)
+     stream = get_stream_for_caps(caps, pad)
++    if stream is None:
++        return None
+     stream.pad_id = pad_id
+     if store_pad:
+         stream.pad = pad

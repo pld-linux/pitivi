@@ -2,11 +2,12 @@ Summary:	Non-linear video editor
 Summary(pl.UTF-8):	Edytor wideo
 Name:		pitivi
 Version:	0.15.2
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pitivi/0.15/%{name}-%{version}.tar.xz
 # Source0-md5:	e0e379fca759025140ac1316819b2173
+Patch0:		pitivi-0.15.0-ignore-unknown-stream-types.patch
 URL:		http://www.pitivi.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
@@ -42,6 +43,7 @@ PiTiVi jest programem do edycji wideo używającym GStreamera.
 
 %prep
 %setup -q
+%patch0 -p0
 
 %build
 %{__intltoolize}
