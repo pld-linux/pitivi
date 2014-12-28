@@ -11,7 +11,7 @@ Patch0:		pitivi-0.15.0-ignore-unknown-stream-types.patch
 URL:		http://www.pitivi.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	python >= 1:2.5
 BuildRequires:	python-modules
