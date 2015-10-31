@@ -2,7 +2,7 @@ Summary:	Non-linear video editor
 Summary(pl.UTF-8):	Edytor wideo
 Name:		pitivi
 Version:	0.15.2
-Release:	2
+Release:	3
 License:	LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pitivi/0.15/%{name}-%{version}.tar.xz
