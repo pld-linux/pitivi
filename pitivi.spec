@@ -1,38 +1,44 @@
 Summary:	Non-linear video editor
-Summary(pl.UTF-8):	Edytor wideo
+Summary(pl.UTF-8):	Nieliniowy edytor filmów
 Name:		pitivi
-Version:	0.15.2
-Release:	3
-License:	LGPL v2+
+Version:	0.95
+Release:	1
+License:	LGPL v2.1+
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pitivi/0.15/%{name}-%{version}.tar.xz
-# Source0-md5:	e0e379fca759025140ac1316819b2173
-Patch0:		pitivi-0.15.0-ignore-unknown-stream-types.patch
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pitivi/0.95/%{name}-%{version}.tar.xz
+# Source0-md5:	7bb0bca1b25ef592f0105c3ad93b8c20
 URL:		http://www.pitivi.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
+BuildRequires:	cairo-devel
 BuildRequires:	gettext-tools
+BuildRequires:	glib2-devel >= 1:2.30.0
+BuildRequires:	gobject-introspection-devel >= 1.32.0
+BuildRequires:	gstreamer-devel >= 1.6.0
+BuildRequires:	gstreamer-plugins-base-devel >= 1.6.0
+BuildRequires:	gtk+3-devel >= 3.10.0
 BuildRequires:	intltool >= 0.35.0
-BuildRequires:	python >= 1:2.5
-BuildRequires:	python-modules
+BuildRequires:	libtool >= 2:2
+BuildRequires:	pkgconfig
+BuildRequires:	python3 >= 1:3.2
+BuildRequires:	python3-devel >= 1:3.2
+BuildRequires:	python3-modules >= 1:3.2
+BuildRequires:	python3-pycairo-devel
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.311
+BuildRequires:	yelp-tools
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	shared-mime-info
-Requires:	Zope-Interface
-Requires:	gstreamer-audiosink >= 0.10.29
-Requires:	gstreamer-gnonlin >= 0.10.16
-Requires:	gstreamer-plugins-good
-Requires:	gstreamer-videosink >= 0.10.29
+Requires:	gstreamer-audiosink >= 1.6.0
+Requires:	gstreamer-editing-services >= 1.6.0
+Requires:	gstreamer-plugins-good >= 1.6.0
+Requires:	gstreamer-videosink >= 1.6.0
+Requires:	gtk+3 >= 3.10.0
 Requires:	hicolor-icon-theme
-Requires:	python-gstreamer >= 0.10.19
-Requires:	python-pycairo
-Requires:	python-pygoocanvas
-Requires:	python-pygtk-glade >= 2:2.24.0
-Requires:	python-pygtk-gtk >= 2:2.24.0
-Requires:	python-pyxdg
-Requires:	python-setuptools
+Requires:	python3-gstreamer >= 1.6.0
+Requires:	python3-pycairo
+Requires:	python3-pygobject3 >= 3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -43,14 +49,14 @@ PiTiVi jest programem do edycji wideo używającym GStreamera.
 
 %prep
 %setup -q
-%patch0 -p0
 
 %build
-%{__intltoolize}
-%{__aclocal} -I common/m4
+%{__libtoolize}
+%{__aclocal} -I m4 -I common/m4
 %{__autoconf}
 %{__automake}
-%configure
+%configure \
+	--disable-static
 %{__make}
 
 %install
@@ -58,6 +64,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/python/pitivi/timeline/renderer.la
 
 %find_lang %{name} --with-gnome
 
@@ -76,12 +84,23 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README RELEASE
+%doc AUTHORS COPYING NEWS README RELEASE
 %attr(755,root,root) %{_bindir}/pitivi
-%{_libdir}/%{name}
+%dir %{_libdir}/%{name}
+%dir %{_libdir}/%{name}/python
+%dir %{_libdir}/%{name}/python/pitivi
+%{_libdir}/%{name}/python/pitivi/*.py
+%{_libdir}/%{name}/python/pitivi/__pycache__
+%{_libdir}/%{name}/python/pitivi/dialogs
+%dir %{_libdir}/%{name}/python/pitivi/timeline
+%{_libdir}/%{name}/python/pitivi/timeline/*.py
+%{_libdir}/%{name}/python/pitivi/timeline/__pycache__
+%attr(755,root,root) %{_libdir}/%{name}/python/pitivi/timeline/renderer.so
+%{_libdir}/%{name}/python/pitivi/undo
+%{_libdir}/%{name}/python/pitivi/utils
 %{_datadir}/%{name}
+%{_datadir}/appdata/pitivi.appdata.xml
 %{_datadir}/mime/packages/%{name}.xml
 %{_desktopdir}/%{name}.desktop
-%{_iconsdir}/hicolor/*/*/*.png
-%{_iconsdir}/hicolor/*/*/*.svg
-%{_mandir}/man1/%{name}.1*
+%{_iconsdir}/hicolor/*x*/apps/pitivi.png
+%{_mandir}/man1/pitivi.1*
