@@ -1,12 +1,12 @@
 Summary:	Non-linear video editor
 Summary(pl.UTF-8):	Nieliniowy edytor filmów
 Name:		pitivi
-Version:	0.98.1
-Release:	2
+Version:	0.999
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pitivi/0.98/%{name}-%{version}.tar.xz
-# Source0-md5:	16f6d18e45e317a0426193caddee1936
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pitivi/0.999/%{name}-%{version}.tar.xz
+# Source0-md5:	5f321c64dc20086f0f6737b42e73f557
 URL:		http://www.pitivi.org/
 BuildRequires:	cairo-devel
 BuildRequires:	gettext-tools
@@ -72,7 +72,6 @@ ninja -C build install -v
 # omitted by meson
 install -d $RPM_BUILD_ROOT{%{_datadir}/mime/packages,%{_mandir}/man1}
 cp -p docs/pitivi.1 $RPM_BUILD_ROOT%{_mandir}/man1
-cp -p pitivi.xml $RPM_BUILD_ROOT%{_datadir}/mime/packages
 
 # junk installed by meson
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/pitivi/python/pitivi/{configure.py.in,coptimizations/renderer.c}
@@ -94,7 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING NEWS README RELEASE
+%doc AUTHORS COPYING NEWS README
 %attr(755,root,root) %{_bindir}/pitivi
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/python
@@ -110,8 +109,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/python/pitivi/utils
 %{_libdir}/%{name}/python/pitivi/viewer
 %{_datadir}/%{name}
-%{_datadir}/appdata/pitivi.appdata.xml
-%{_datadir}/mime/packages/%{name}.xml
-%{_desktopdir}/%{name}.desktop
-%{_iconsdir}/hicolor/*x*/apps/pitivi.png
+%{_datadir}/appdata/org.pitivi.Pitivi.appdata.xml
+%{_datadir}/mime/packages/org.pitivi.Pitivi-mime.xml
+%{_desktopdir}/org.pitivi.Pitivi.desktop
+%{_iconsdir}/hicolor/*x*/apps/org.pitivi.Pitivi.png
+%{_iconsdir}/hicolor/*x*/mimetypes/text-x-xges.png
+%{_iconsdir}/hicolor/symbolic/apps/org.pitivi.Pitivi-symbolic.svg
 %{_mandir}/man1/pitivi.1*
