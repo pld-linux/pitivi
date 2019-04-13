@@ -12,33 +12,37 @@ BuildRequires:	cairo-devel
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.30.0
 BuildRequires:	gobject-introspection-devel >= 1.32.0
-BuildRequires:	gstreamer-devel >= 1.10.2
-BuildRequires:	gstreamer-plugins-base-devel >= 1.10.2
+BuildRequires:	gstreamer-devel >= 1.14.2
+BuildRequires:	gstreamer-plugins-base-devel >= 1.14.2
 BuildRequires:	gstreamer-transcoder-devel >= 1.8.1
 BuildRequires:	gtk+3-devel >= 3.10.0
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	itstool
+BuildRequires:	meson >= 0.41.0
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
-BuildRequires:	python3 >= 1:3.2
+BuildRequires:	python3 >= 1:3.3
 BuildRequires:	python3-devel >= 1:3.2
 BuildRequires:	python3-modules >= 1:3.2
 BuildRequires:	python3-pycairo-devel
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.311
+BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	yelp-tools
 BuildRequires:	xz
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	shared-mime-info
-Requires:	gstreamer-audiosink >= 1.10.2
-Requires:	gstreamer-editing-services >= 1.10.2
-Requires:	gstreamer-plugins-good >= 1.10.2
+Requires:	gstreamer-audiosink >= 1.14.2
+Requires:	gstreamer-editing-services >= 1.14.2
+Requires:	gstreamer-plugins-good >= 1.14.2
 Requires:	gstreamer-transcoder >= 1.8.1
-Requires:	gstreamer-videosink >= 1.10.2
+Requires:	gstreamer-videosink >= 1.14.2
 Requires:	gtk+3 >= 3.10.0
 Requires:	hicolor-icon-theme
-Requires:	python3-gstreamer >= 1.10.2
+Requires:	python3 >= 1:3.3
+Requires:	python3-gstreamer >= 1.14.2
 Requires:	python3-pycairo
 Requires:	python3-pygobject3 >= 3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -52,22 +56,17 @@ PiTiVi jest programem do edycji wideo używającym GStreamera.
 %prep
 %setup -q
 
-%build
-CC="%{__cc}" \
-CFLAGS="%{rpmcflags} %{rpmcppflags}" \
-LDFLAGS="%{rpmldflags}" \
-meson build \
-	--buildtype=plain \
-	--prefix=%{_prefix} \
-	--libdir=%{_libdir}
+%{__sed} -i -e '1s,/usr/bin/env python3,/usr/bin/python3,' bin/pitivi.in
 
-ninja -C build -v
+%build
+%meson build
+
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-DESTDIR=$RPM_BUILD_ROOT \
-ninja -C build install -v
+%ninja_install -C build
 
 # omitted by meson
 install -d $RPM_BUILD_ROOT{%{_datadir}/mime/packages,%{_mandir}/man1}
