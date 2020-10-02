@@ -1,13 +1,12 @@
 Summary:	Non-linear video editor
 Summary(pl.UTF-8):	Nieliniowy edytor filmów
 Name:		pitivi
-Version:	0.999
-Release:	3
+Version:	2020.09
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/pitivi/0.999/%{name}-%{version}.tar.xz
-# Source0-md5:	5f321c64dc20086f0f6737b42e73f557
-Patch0:		python-3.8.patch
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/pitivi/2020.09/%{name}-%{version}.tar.xz
+# Source0-md5:	4717d379de8cee3f80b6b3c9dbd817c0
 URL:		http://www.pitivi.org/
 BuildRequires:	cairo-devel
 BuildRequires:	gettext-tools
@@ -17,14 +16,13 @@ BuildRequires:	gstreamer-devel >= 1.14.2
 BuildRequires:	gstreamer-plugins-base-devel >= 1.14.2
 BuildRequires:	gstreamer-transcoder-devel >= 1.8.1
 BuildRequires:	gtk+3-devel >= 3.10.0
-BuildRequires:	intltool >= 0.35.0
 BuildRequires:	itstool
-BuildRequires:	meson >= 0.41.0
+BuildRequires:	meson >= 0.46.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	python3 >= 1:3.3
-BuildRequires:	python3-devel >= 1:3.2
-BuildRequires:	python3-modules >= 1:3.2
+BuildRequires:	python3-devel >= 1:3.3
+BuildRequires:	python3-modules >= 1:3.3
 BuildRequires:	python3-pycairo-devel
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.736
@@ -56,7 +54,6 @@ PiTiVi jest programem do edycji wideo używającym GStreamera.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %{__sed} -i -e '1s,/usr/bin/env python3,/usr/bin/python3,' bin/pitivi.in
 
@@ -69,10 +66,6 @@ PiTiVi jest programem do edycji wideo używającym GStreamera.
 rm -rf $RPM_BUILD_ROOT
 
 %ninja_install -C build
-
-# omitted by meson
-install -d $RPM_BUILD_ROOT{%{_datadir}/mime/packages,%{_mandir}/man1}
-cp -p docs/pitivi.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
 # junk installed by meson
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/pitivi/python/pitivi/{configure.py.in,coptimizations/renderer.c}
@@ -94,13 +87,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING NEWS README
+%doc AUTHORS COPYING MAINTAINERS NEWS README.md
 %attr(755,root,root) %{_bindir}/pitivi
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/python
 %dir %{_libdir}/%{name}/python/pitivi
 %{_libdir}/%{name}/python/pitivi/*.py
 %{_libdir}/%{name}/python/pitivi/__pycache__
+%{_libdir}/%{name}/python/pitivi/clip_properties
 %{_libdir}/%{name}/python/pitivi/dialogs
 %dir %{_libdir}/%{name}/python/pitivi/timeline
 %{_libdir}/%{name}/python/pitivi/timeline/*.py
@@ -110,10 +104,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/python/pitivi/utils
 %{_libdir}/%{name}/python/pitivi/viewer
 %{_datadir}/%{name}
-%{_datadir}/appdata/org.pitivi.Pitivi.appdata.xml
+%{_datadir}/metainfo/org.pitivi.Pitivi.appdata.xml
 %{_datadir}/mime/packages/org.pitivi.Pitivi-mime.xml
 %{_desktopdir}/org.pitivi.Pitivi.desktop
-%{_iconsdir}/hicolor/*x*/apps/org.pitivi.Pitivi.png
-%{_iconsdir}/hicolor/*x*/mimetypes/text-x-xges.png
+%{_iconsdir}/hicolor/scalable/apps/org.pitivi.Pitivi.svg
+%{_iconsdir}/hicolor/scalable/mimetypes/text-x-xges.svg
 %{_iconsdir}/hicolor/symbolic/apps/org.pitivi.Pitivi-symbolic.svg
-%{_mandir}/man1/pitivi.1*
