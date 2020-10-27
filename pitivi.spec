@@ -1,12 +1,12 @@
 Summary:	Non-linear video editor
 Summary(pl.UTF-8):	Nieliniowy edytor filmów
 Name:		pitivi
-Version:	2020.09.1
+Version:	2020.09.2
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/pitivi/2020.09/%{name}-%{version}.tar.xz
-# Source0-md5:	f36d78f8525749626d26309fb426344e
+# Source0-md5:	e42bec86a5e01770a1066895f0fbb4ac
 URL:		http://www.pitivi.org/
 BuildRequires:	cairo-devel
 BuildRequires:	gettext-tools
