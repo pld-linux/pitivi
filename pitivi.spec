@@ -7,6 +7,7 @@ License:	LGPL v2.1+
 Group:		X11/Applications/Multimedia
 Source0:	https://download.gnome.org/sources/pitivi/2021/%{name}-%{version}.tar.xz
 # Source0-md5:	fec14b7bd1822b414f371e72a4b93cc8
+Patch0:		meson0.60.patch
 URL:		http://www.pitivi.org/
 BuildRequires:	cairo-devel
 BuildRequires:	gettext-tools
@@ -54,6 +55,7 @@ PiTiVi jest programem do edycji wideo używającym GStreamera.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %{__sed} -i -e '1s,/usr/bin/env python3,/usr/bin/python3,' bin/pitivi.in
 
