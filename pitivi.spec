@@ -1,13 +1,12 @@
 Summary:	Non-linear video editor
 Summary(pl.UTF-8):	Nieliniowy edytor filmów
 Name:		pitivi
-Version:	2021.05
-Release:	3
+Version:	2022.06
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Applications/Multimedia
-Source0:	https://download.gnome.org/sources/pitivi/2021/%{name}-%{version}.tar.xz
-# Source0-md5:	fec14b7bd1822b414f371e72a4b93cc8
-Patch0:		meson0.60.patch
+Source0:	https://download.gnome.org/sources/pitivi/2022/%{name}-%{version}.tar.xz
+# Source0-md5:	16ef94a484e6c321a08c40972371c7ed
 URL:		http://www.pitivi.org/
 BuildRequires:	cairo-devel
 BuildRequires:	gettext-tools
@@ -21,9 +20,9 @@ BuildRequires:	itstool
 BuildRequires:	meson >= 0.46.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
-BuildRequires:	python3 >= 1:3.3
-BuildRequires:	python3-devel >= 1:3.3
-BuildRequires:	python3-modules >= 1:3.3
+BuildRequires:	python3 >= 1:3.5
+BuildRequires:	python3-devel >= 1:3.5
+BuildRequires:	python3-modules >= 1:3.5
 BuildRequires:	python3-pycairo-devel
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.736
@@ -41,7 +40,7 @@ Requires:	gstreamer-transcoder >= 1.8.1
 Requires:	gstreamer-videosink >= 1.14.2
 Requires:	gtk+3 >= 3.10.0
 Requires:	hicolor-icon-theme
-Requires:	python3 >= 1:3.3
+Requires:	python3 >= 1:3.5
 Requires:	python3-gstreamer >= 1.14.2
 Requires:	python3-pycairo
 Requires:	python3-pygobject3 >= 3
@@ -55,7 +54,6 @@ PiTiVi jest programem do edycji wideo używającym GStreamera.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %{__sed} -i -e '1s,/usr/bin/env python3,/usr/bin/python3,' bin/pitivi.in
 
