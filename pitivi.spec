@@ -2,7 +2,7 @@ Summary:	Non-linear video editor
 Summary(pl.UTF-8):	Nieliniowy edytor filmów
 Name:		pitivi
 Version:	2023.03
-Release:	3
+Release:	4
 License:	LGPL v2.1+
 Group:		X11/Applications/Multimedia
 Source0:	https://download.gnome.org/sources/pitivi/2023/%{name}-%{version}.tar.xz
@@ -25,7 +25,7 @@ BuildRequires:	python3-devel >= 1:3.5
 BuildRequires:	python3-modules >= 1:3.5
 BuildRequires:	python3-pycairo-devel
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 2.043
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	yelp-tools
@@ -58,14 +58,14 @@ PiTiVi jest programem do edycji wideo używającym GStreamera.
 %{__sed} -i -e '1s,/usr/bin/env python3,/usr/bin/python3,' bin/pitivi.in
 
 %build
-%meson build
+%meson
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install
 
 # junk installed by meson
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/pitivi/python/pitivi/{configure.py.in,coptimizations/renderer.c}
